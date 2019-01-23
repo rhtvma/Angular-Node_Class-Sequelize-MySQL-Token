@@ -1,0 +1,41 @@
+<!--style="background-color: aliceblue; margin-bottom: 15px;"-->
+<div class="panel panel-default">
+    <div class="panel-heading ">
+        <div class="row">
+            <div class="col-md-6">Projects</div>
+            <div class="col-md-6">
+                <div class="col-md-3">Page 2</div>
+                <div class="col-md-3">Page 3</div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <ul>
+            <li *ngFor="let hero of projectList">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <h5 class="card-header">{{hero.project}}</h5>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6"><h5 class="card-title">{{hero.formsubmitted}}</h5>
+                                    </div>
+                                    <div class="col-md-6"><h5 class="card-title">Number of forms</h5></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6"><h5 class="card-title">{{hero.total}}</h5></div>
+                                    <div class="col-md-6">{{hero.count}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ hero | json}}
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+

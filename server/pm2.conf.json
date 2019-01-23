@@ -1,0 +1,9 @@
+{
+    "gradrServer": [
+        {
+            "name": "Gradr Server",
+            "script": "npm",
+            "args" : "prod"
+        }
+    ]
+}

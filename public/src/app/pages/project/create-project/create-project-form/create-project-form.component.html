@@ -1,0 +1,132 @@
+<form novalidate
+      [formGroup]="createProjectForm">
+    <div class="row">
+        <div class="form-group col-md-12"
+             [ngClass]="{
+        'has-danger': projectSchool.invalid && (projectSchool.dirty || projectSchool.touched),
+        'has-success': projectSchool.valid && (projectSchool.dirty || projectSchool.touched)}">
+            <input type="text"
+                   id="projectSchool"
+                   placeholder="projectSchool"
+                   formControlName="projectSchool"
+                   required>
+            <div class="form-control-feedback"
+                 *ngIf="projectSchool.errors && (projectSchool.dirty || projectSchool.touched)">
+                <p *ngIf="projectSchool.errors.required">projectSchool is required</p>
+                <p *ngIf="projectSchool.errors.pattern">The username must contain at least the @ character</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12"
+             [ngClass]="{
+        'has-danger': description.invalid && (description.dirty || description.touched),
+        'has-success': description.valid && (description.dirty || description.touched)}">
+            <input type="text"
+                   id="description"
+                   placeholder="description"
+                   formControlName="description"
+                   required>
+            <div class="form-control-feedback"
+                 *ngIf="description.errors && (description.dirty || description.touched)">
+                <p *ngIf="description.errors.required">description is required</p>
+                <p *ngIf="description.errors.pattern">The description must contain at least the @ character</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6"
+             [ngClass]="{
+        'has-danger': username.invalid && (username.dirty || username.touched),
+        'has-success': username.valid && (username.dirty || username.touched)}">
+            <input type="text"
+                   id="username"
+
+                   placeholder="username"
+                   formControlName="username"
+                   required>
+            <div class="form-control-feedback"
+                 *ngIf="username.errors && (username.dirty || username.touched)">
+                <p *ngIf="username.errors.required">Username is required</p>
+                <p *ngIf="username.errors.pattern">The username address must contain at least the @ character</p>
+            </div>
+        </div>
+        <div class="form-group col-md-6"
+             [ngClass]="{
+        'has-danger': symbol.invalid && (symbol.dirty || symbol.touched),
+        'has-success': symbol.valid && (symbol.dirty || symbol.touched)}">
+            <input type="text"
+                   id="login"
+
+                   placeholder="symbol"
+                   formControlName="symbol"
+                   required>
+            <div class="form-control-feedback"
+                 *ngIf="symbol.errors && (symbol.dirty || symbol.touched)">
+                <p *ngIf="symbol.errors.required">Email is required</p>
+                <p *ngIf="symbol.errors.pattern">The symbol address must contain at least the @ character</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6"
+             [ngClass]=" {
+        'has-danger': password.invalid && (password.dirty || password.touched),
+        'has-success': password.valid && (password.dirty || password.touched) }">
+            <input type="password"
+                   name="password"
+                   id="password"
+                   placeholder="password"
+                   formControlName="password"
+                   required>
+            <div class="form-control-feedback"
+                 *ngIf="password.errors && (password.dirty || password.touched)">
+                <p *ngIf="password.errors.required">Password is required</p>
+                <p *ngIf="password.errors.minlength">Password must be 5 characters long, we need another
+                    {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}}
+                    characters </p>
+            </div>
+        </div>
+        <div class="form-group col-md-6"
+             [ngClass]=" {
+        'has-danger': cpassword.invalid && (cpassword.dirty || cpassword.touched),
+        'has-success': cpassword.valid && (cpassword.dirty || cpassword.touched) }">
+            <input type="password"
+
+                   name="cpassword"
+                   id="cpassword"
+                   placeholder="Confirm password"
+                   formControlName="cpassword"
+                   required>
+            <div class="form-control-feedback"
+                 *ngIf="cpassword.errors && (cpassword.dirty || cpassword.touched)">
+                <p *ngIf="cpassword.errors.required">Confirm Password is required</p>
+                <p *ngIf="cpassword.errors.minlength">Confirm Password must be 5 characters long, we need another
+                    {{cpassword.errors.minlength.requiredLength - cpassword.errors.minlength.actualLength}}
+                    characters </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <input type="number"
+
+                   name="mobile"
+                   id="mobile"
+                   placeholder="mobile - (Optional)"
+                   formControlName="mobile"
+            >
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+

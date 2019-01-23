@@ -1,0 +1,61 @@
+a {
+    color: #a679a9;
+    font-size: large;
+    text-decoration: none;
+    background-color: transparent;
+}
+/*.sidebar {*/
+    /*height: 100%;*/
+    /*width: 160px;*/
+    /*position: fixed;*/
+    /*z-index: 1;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*background-color: #111;*/
+    /*overflow-x: hidden;*/
+    /*padding-top: 20px;*/
+/*}*/
+
+.sidebar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 45px;
+    }
+
+    .sidebar a {
+        font-size: 18px;
+    }
+}
+
+.sidebar a {
+    position: absolute; /* Position them relative to the browser window */
+    left: -80px; /* Position them outside of the screen */
+    transition: 0.3s; /* Add transition on hover */
+    padding: 40px; /* 15px padding */
+    width: 100px; /* Set a specific width */
+    text-decoration: none; /* Remove underline */
+    font-size: 15px; /* Increase font size */
+    color: white; /* White text color */
+    border-radius: 0 5px 5px 0; /* Rounded corners on the top right and bottom right side */
+}
+
+.menuItem {
+    text-align: -webkit-center;
+    list-style-type: none;
+}
+
+.linkCenter
+{
+    text-align: -webkit-center;
+}

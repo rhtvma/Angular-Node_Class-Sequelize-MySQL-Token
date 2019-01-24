@@ -1,44 +1,12 @@
-# Angular(6)-Node-Express-MySQL-Passport
-Angular(6)-Node-Express-MySQL-Passport (Under Development- Basic functionalities are working)
-
-# Project Screenshots
-
-![alt text](https://github.com/rhtvma/Angular-Node-Express-MySQL-Passport/blob/master/database/Screenshots/loginPage.png)
-
-
-# Public (Front-End)
-
-This /public folder contains Angular code 
-
-* Angular-Routing-With-Lazy-Loading 
-
-  https://github.com/rhtvma/Angular-Node-MySQL-Passport/tree/Angular-Routing-With-Lazy-Loading
-
-
-* Angular-Sidebar 
-
-  https://github.com/rhtvma/Angular-Node-MySQL-Passport/tree/Angular-Sidebar
-
-* Angular-Form-Validation 
-
-  https://github.com/rhtvma/Angular-Node-MySQL-Passport/tree/Angular-Form-Validation
-
-
 # Server (Back-End)
 
 This /server folder contains Node.Js(Server) code 
-
 
 # Database
 
 import database from /database folder
 
- * username: 12345@gmail.com
- * password: 12345
- 
- 
- 
- 
+
  # How to Run
  
    Note: make sure #node and #git is installed on your system.
@@ -50,9 +18,9 @@ import database from /database folder
               
               run **npm install** 
               
-              run **node server.js**
+              run **node main.js**
               
-              Server running at http://localhost:3001/
+              Server running at http://localhost:8070/
               
               goto **/server/config/default.json**
               
@@ -63,7 +31,7 @@ import database from /database folder
                   "port": 3306,
                   "user": "root",
                   "password": "root",
-                  "database": "anemp"
+                  "database": "{db_name}"
                 },
 
    * Step 3 : goto /public 
@@ -77,7 +45,7 @@ import database from /database folder
               
               run **ng build**  for production mode use this
                             
-              then just hit **http://localhost:3001/** (this will work only after **Step 2**)
+              then just hit **http://localhost:8070/** (this will work only after **Step 2**)
               
 
  

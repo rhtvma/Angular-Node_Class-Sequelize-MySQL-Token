@@ -17,8 +17,6 @@ export class CreateProjectComponent implements OnInit {
 
     @ViewChild(CreateProjectFormComponent) createProjectFormData;
     model: any;
-    projectList: any;
-
     isAdd: boolean = false;
 
     constructor(private _router: Router, private _httpService: HttpService,
@@ -37,33 +35,34 @@ export class CreateProjectComponent implements OnInit {
     ngOnInit() {
     }
 
-    signup(): void {
+    saveProject(): void {
         if (!this.model.valid) {
-            this.onSubmit();
+            // this.onSubmit();
             console.log("Form is invalid!");
             return;
         }
         let data = this.model["controls"];
         debugger;
         const body = {
-            firstname: data.firstname.value,
-            lastname: data.lastname.value,
-            username: data.username.value,
-            email: data.email.value,
-            password: data.password.value,
-            mobile: data.mobile.value || null
+            project: data.project.value,
+            formsubmitted: data.formsubmitted.value,
+            description: data.description.value,
+            symbol: data.symbol.value,
+            profile: data.profile.value || [1, 2]
         };
-        this._httpService.post('/project', body)
+        this._httpService.post('/projectCreate', body)
             .subscribe(
-                (data: { data: any, response: string, response_message: Array<any> }) => {
-                    if (data.response === 'success') {
-                        this._toastrMessageService.typeSuccess(data.response_message);
-                        //this._router.navigate(['/project']);
+                (result: { data: any, msg: string, status: number }) => {
+                    if (result.status) {
+                        this._toastrMessageService.typeSuccess(result.msg);
+                        this._router.navigate(['/project/list']);
+                    } else {
+                        this._toastrMessageService.typeError(result.msg);
                     }
                 },
                 (error) => {
-                    this._toastrMessageService.typeError(error.error.response_message || error.status_text);
-                    //this._router.navigate(['/project']);
+                    this._toastrMessageService.typeError(error.error.msg);
+                    this._router.navigate(['/project/create']);
                 });
 
     }

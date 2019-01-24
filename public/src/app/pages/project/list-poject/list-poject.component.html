@@ -1,41 +1,119 @@
-<!--style="background-color: aliceblue; margin-bottom: 15px;"-->
-<div class="panel panel-default">
-    <div class="panel-heading ">
-        <div class="row">
-            <div class="col-md-6">Projects</div>
-            <div class="col-md-6">
-                <div class="col-md-3">Page 2</div>
-                <div class="col-md-3">Page 3</div>
-            </div>
-        </div>
-    </div>
-    <div class="panel-body">
-        <ul>
-            <li *ngFor="let hero of projectList">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <h5 class="card-header">{{hero.project}}</h5>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6"><h5 class="card-title">{{hero.formsubmitted}}</h5>
-                                    </div>
-                                    <div class="col-md-6"><h5 class="card-title">Number of forms</h5></div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6"><h3 class="card-title">projects</h3></div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6"><input class="form-control mr-2"
+                                                             type="text"
+                                                             name="search"
+                                                             placeholder="Search"
+                                                             [(ngModel)]="searchText"></div>
+                                <div class="col-md-6">
+                                    <a routerLink="/project/create" class="btn btn-success"><i
+                                            class="fa fa-check"></i>Create project
+                                    </a>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6"><h5 class="card-title">{{hero.total}}</h5></div>
-                                    <div class="col-md-6">{{hero.count}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--<div *ngFor="let hero of projectList | searchPipe :searchText :'project'">-->
+                    <!--<div class="row" (click)="seletectProject(hero)">-->
+                    <!--&lt;!&ndash;<div >&ndash;&gt;-->
+                    <!--<div class="col-sm-3">-->
+                    <!--<div class="card">-->
+                    <!--<h5 class="card-header">{{hero.project.project}}</h5>-->
+                    <!--<div class="card-body">-->
+                    <!--<div class="row">-->
+                    <!--<div class="col-sm-6"><h5 class="card-title">-->
+                    <!--{{hero.project.formsubmitted}}</h5>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-6"><h5 class="card-title">Number of-->
+                    <!--forms</h5></div>-->
+                    <!--</div>-->
+                    <!--<div class="row">-->
+                    <!--<div class="col-sm-6"><h5 class="card-title">{{hero.project.total}}</h5>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-6">{{hero.project.count}}</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <ul class="card-container">
+                        <li *ngFor="let hero of projectList | searchPipe :searchText :'project'">
+                            <div class="card" (click)="seletectProject(hero.id)">
+                                <h5 class="card-header">{{hero.project.project}}</h5>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6"><h5 class="card-title">
+                                            {{hero.project.formsubmitted}}</h5>
+                                        </div>
+                                        <div class="col-sm-6"><h5 class="card-title">Number of
+                                            forms</h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6"><h5 class="card-title">{{hero.project.total}}</h5>
+                                        </div>
+                                        <div class="col-sm-6">{{hero.project.count}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--{{ projectList | json}}-->
+                </div>
+                <div class="form-actions">
+                    <!--{{selectedRecord | json}}-->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <h1>{{selectedRecord.project.project}}</h1>
+                                <h4> Last Updated :{{selectedRecord.project.lastupdated | date: 'MMM d, y h:mm:ss
+                                    a'}}</h4>
+                                <div class="card-body">
+                                    <h4> Created On :{{selectedRecord.project.createdon | date: 'MMM d, y h:mm:ss
+                                        a'}}</h4>
+                                    <div class="row">
+                                        <div class="col-sm-6"><h5 class="card-title">
+                                            {{selectedRecord.project.description}}</h5>
+                                        </div>
+                                        <div class="col-sm-6"><h5 class="card-title">Number of
+                                            forms</h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6"><h5 class="card-title">Project School</h5>
+                                        </div>
+                                        <div class="col-sm-6">Project School</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {{ hero | json}}
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 </div>
 
 
+<!--<ul class="card-container" >-->
+<!--<li *ngFor="let hero of projectList | searchPipe :searchText :'project'">-->
+<!--<div class="card">-->
+<!--<div class="card-image">-->
+<!--<img src="http://placehold.it/100">-->
+<!--</div>-->
+<!--<div class="card-theme">-->
+<!--<a href="#">Should you be here?</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</li>-->
+<!--</ul>-->
 
 

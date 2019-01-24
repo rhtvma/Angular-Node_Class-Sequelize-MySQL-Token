@@ -5,6 +5,6 @@
 
 export const environment = {
     production: false,
-    serverBase: "http://localhost:8070",
+    serverBase: "http://localhost:8080",
     endpoints: {}
 };

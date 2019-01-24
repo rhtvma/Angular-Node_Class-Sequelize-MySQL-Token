@@ -2,7 +2,7 @@
  * Created by rhtvma on 1/21/2019.
  */
 var SequelizeAuto = require('sequelize-auto')
-var auto = new SequelizeAuto('transervetech', 'root', '');
+var auto = new SequelizeAuto('kkk', 'root', '');
 
 auto.run(function (err) {
     if (err) throw err;

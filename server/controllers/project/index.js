@@ -16,11 +16,15 @@ class ProjectRouter {
 
         this.router = express.Router();
 
-        this.router.route('/projects')
-            .get(this._projectController.getCountryList.bind(this._projectController));
 
         this.router.route(this.config.routes.project.projectList)
             .get(this._projectController.projectList.bind(this._projectController));
+
+        this.router.route(this.config.routes.project.projectCreate)
+            .post(this._projectController.projectCreate.bind(this._projectController));
+
+        this.router.route(this.config.routes.users.usersList)
+            .get(this._projectController.usersList.bind(this._projectController));
 
         // this.router.route(this.config.routes.user.getUser)
         //     .get(this._projectController.validatePotentialMatchesStatus.bind(this._projectController),

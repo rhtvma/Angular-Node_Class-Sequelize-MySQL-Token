@@ -4,6 +4,8 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {ProjectRoutingModule} from './project-routing.module';
 import {ProjectComponent} from './project.component';
 import {ListPojectComponent} from './list-poject/list-poject.component';
+import {UniqueDataPipe} from './pipe/unique.pipe';
+import {SearchPipe} from './pipe/search.pipe';
 
 @NgModule({
     imports: [
@@ -12,7 +14,7 @@ import {ListPojectComponent} from './list-poject/list-poject.component';
         FormsModule,
         ProjectRoutingModule
     ],
-    declarations: [ProjectComponent, ListPojectComponent]
+    declarations: [ProjectComponent, ListPojectComponent, UniqueDataPipe, SearchPipe]
 })
 export class ProjectModule {
 }

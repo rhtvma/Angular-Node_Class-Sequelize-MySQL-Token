@@ -1,132 +1,114 @@
 <form novalidate
       [formGroup]="createProjectForm">
-    <div class="row">
-        <div class="form-group col-md-12"
-             [ngClass]="{
-        'has-danger': projectSchool.invalid && (projectSchool.dirty || projectSchool.touched),
-        'has-success': projectSchool.valid && (projectSchool.dirty || projectSchool.touched)}">
-            <input type="text"
-                   id="projectSchool"
-                   placeholder="projectSchool"
-                   formControlName="projectSchool"
-                   required>
-            <div class="form-control-feedback"
-                 *ngIf="projectSchool.errors && (projectSchool.dirty || projectSchool.touched)">
-                <p *ngIf="projectSchool.errors.required">projectSchool is required</p>
-                <p *ngIf="projectSchool.errors.pattern">The username must contain at least the @ character</p>
+    <div class="row p-t-20">
+        <div class="col-md-8">
+            <div class="form-group"
+                 [ngClass]="{
+        'has-danger': project.invalid && (project.dirty || project.touched),
+        'has-success': project.valid && (project.dirty || project.touched)}">
+                <label class="control-label">Project School</label>
+                <input type="text"
+                       id="project"
+                       placeholder="project" class="form-control"
+                       formControlName="project"
+                       required>
+                <div class="form-control-feedback"
+                     *ngIf="project.errors && (project.dirty || project.touched)">
+                    <p *ngIf="project.errors.required">project is required</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="form-group col-md-12"
-             [ngClass]="{
+    <div class="row p-t-20">
+        <div class="col-md-6">
+            <div class="form-group"
+                 [ngClass]="{
         'has-danger': description.invalid && (description.dirty || description.touched),
         'has-success': description.valid && (description.dirty || description.touched)}">
-            <input type="text"
-                   id="description"
-                   placeholder="description"
-                   formControlName="description"
-                   required>
-            <div class="form-control-feedback"
-                 *ngIf="description.errors && (description.dirty || description.touched)">
-                <p *ngIf="description.errors.required">description is required</p>
-                <p *ngIf="description.errors.pattern">The description must contain at least the @ character</p>
+                <!--<input type="text"-->
+                <!--id="description"-->
+                <!--placeholder="description"-->
+                <!--formControlName="description"-->
+                <!--required>-->
+                <label class="control-label">Description</label>
+                <textarea rows="4" cols="50" id="description"
+                          placeholder="description" class="form-control"
+                          formControlName="description"
+                          required>
+            </textarea>
+
+                <div class="form-control-feedback"
+                     *ngIf="description.errors && (description.dirty || description.touched)">
+                    <p *ngIf="description.errors.required">description is required</p>
+                    <p *ngIf="description.errors.pattern">The description must contain at least the @ character</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="form-group col-md-6"
-             [ngClass]="{
-        'has-danger': username.invalid && (username.dirty || username.touched),
-        'has-success': username.valid && (username.dirty || username.touched)}">
-            <input type="text"
-                   id="username"
-
-                   placeholder="username"
-                   formControlName="username"
-                   required>
-            <div class="form-control-feedback"
-                 *ngIf="username.errors && (username.dirty || username.touched)">
-                <p *ngIf="username.errors.required">Username is required</p>
-                <p *ngIf="username.errors.pattern">The username address must contain at least the @ character</p>
-            </div>
-        </div>
-        <div class="form-group col-md-6"
-             [ngClass]="{
+    <div class="row p-t-20">
+        <div class="col-md-6">
+            <div class="form-group"
+                 [ngClass]="{
         'has-danger': symbol.invalid && (symbol.dirty || symbol.touched),
         'has-success': symbol.valid && (symbol.dirty || symbol.touched)}">
-            <input type="text"
-                   id="login"
-
-                   placeholder="symbol"
-                   formControlName="symbol"
-                   required>
-            <div class="form-control-feedback"
-                 *ngIf="symbol.errors && (symbol.dirty || symbol.touched)">
-                <p *ngIf="symbol.errors.required">Email is required</p>
-                <p *ngIf="symbol.errors.pattern">The symbol address must contain at least the @ character</p>
+                <label class="control-label">Symbol</label>
+                <input type="text"
+                       id="login"
+                       class="form-control"
+                       placeholder="symbol"
+                       formControlName="symbol"
+                       required>
+                <div class="form-control-feedback"
+                     *ngIf="symbol.errors && (symbol.dirty || symbol.touched)">
+                    <p *ngIf="symbol.errors.required">symbol is required</p>
+                    <!--<p *ngIf="symbol.errors.pattern">The symbol address must contain at least the @ character</p>-->
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="form-group col-md-6"
-             [ngClass]=" {
-        'has-danger': password.invalid && (password.dirty || password.touched),
-        'has-success': password.valid && (password.dirty || password.touched) }">
-            <input type="password"
-                   name="password"
-                   id="password"
-                   placeholder="password"
-                   formControlName="password"
-                   required>
-            <div class="form-control-feedback"
-                 *ngIf="password.errors && (password.dirty || password.touched)">
-                <p *ngIf="password.errors.required">Password is required</p>
-                <p *ngIf="password.errors.minlength">Password must be 5 characters long, we need another
-                    {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}}
-                    characters </p>
+    <div class="row p-t-20">
+        <div class="col-md-6">
+            <div class="form-group "
+                 [ngClass]=" {
+        'has-danger': profile.invalid && (profile.dirty || profile.touched),
+        'has-success': profile.valid && (profile.dirty || profile.touched) }">
+                <label class="control-label">Assign Users</label>
+                <select multiple="multiple" class="form-control" name="profile" id="profile"
+                        formControlName="profile">
+                    <option (mousedown)="onMouseDown($event, item)" (mousemove)="$event.preventDefault()"
+                            *ngFor="let item of usersListData; let i = index"
+                            [value]="item.id">{{item.firstName}}
+                    </option>
+                </select>
+                <!--<input type="profile"-->
+                <!--name="profile"-->
+                <!--id="profile"-->
+                <!--placeholder="profile"-->
+                <!--formControlName="profile"-->
+                <!--required>-->
+                <div class="form-control-feedback"
+                     *ngIf="profile.errors && (profile.dirty || profile.touched)">
+                    <p *ngIf="profile.errors.required">AssignUsers is required</p>
+                </div>
             </div>
         </div>
-        <div class="form-group col-md-6"
-             [ngClass]=" {
-        'has-danger': cpassword.invalid && (cpassword.dirty || cpassword.touched),
-        'has-success': cpassword.valid && (cpassword.dirty || cpassword.touched) }">
-            <input type="password"
-
-                   name="cpassword"
-                   id="cpassword"
-                   placeholder="Confirm password"
-                   formControlName="cpassword"
-                   required>
-            <div class="form-control-feedback"
-                 *ngIf="cpassword.errors && (cpassword.dirty || cpassword.touched)">
-                <p *ngIf="cpassword.errors.required">Confirm Password is required</p>
-                <p *ngIf="cpassword.errors.minlength">Confirm Password must be 5 characters long, we need another
-                    {{cpassword.errors.minlength.requiredLength - cpassword.errors.minlength.actualLength}}
-                    characters </p>
+        <div class="col-md-6">
+            <div class="form-group"
+                 [ngClass]=" {
+        'has-danger': formsubmitted.invalid && (formsubmitted.dirty || formsubmitted.touched),
+        'has-success': formsubmitted.valid && (formsubmitted.dirty || formsubmitted.touched) }">
+                <label class="control-label">Forms</label>
+                <input type="text"
+                       name="formsubmitted" class="form-control"
+                       id="formsubmitted"
+                       placeholder="formsubmitted"
+                       formControlName="formsubmitted"
+                       required>
+                <div class="form-control-feedback"
+                     *ngIf="formsubmitted.errors && (formsubmitted.dirty || formsubmitted.touched)">
+                    <p *ngIf="formsubmitted.errors.required">Forms is required</p>
+                </div>
             </div>
-        </div>
-
-    </div>
-    <div class="row">
-        <div class="form-group col-md-6">
-            <input type="number"
-
-                   name="mobile"
-                   id="mobile"
-                   placeholder="mobile - (Optional)"
-                   formControlName="mobile"
-            >
         </div>
     </div>
 </form>
-
-
-
-
-
-
-
-
-
-

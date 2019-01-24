@@ -3,7 +3,7 @@
  */
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-
+import {HttpService} from '../../../../shared/services/http.service';
 @Component({
     selector: 'create-project-form',
     templateUrl: './create-project-form.component.html',
@@ -12,22 +12,65 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 export class CreateProjectFormComponent implements OnInit {
 
+    // project: data.project.value,
+    // formsubmitted: data.formsubmitted.value,
+    // description: data.description.value,
+    // total: data.total.value,
+    // profile: data.profile.value
+    //
+    
     createProjectForm: FormGroup;
-    projectSchool: FormControl;
+    project: FormControl;
     description: FormControl;
     symbol: FormControl;
-    password: FormControl;
-    cpassword: FormControl;
-    username: FormControl;
-    mobile: FormControl;
+    profile: FormControl;
+    formsubmitted: FormControl;
+    // username: FormControl;
+    // mobile: FormControl;
+    // profile: FormControl;
+
+    usersListData: any;
+    selectedUsers: Array<any>;
+
+    constructor(private _httpService: HttpService) {
+    }
 
     ngOnInit() {
         this.createFormControls();
         this.createForm();
+        this.getUsersList();
+        this.selectedUsers = [];
+    }
+
+    public onMouseDown(event: MouseEvent, item) {
+        event.preventDefault();
+        event.target['selected'] = !event.target['selected'];
+        if (event.target['selected']) {
+            this.selectedUsers.push(item.id);
+            this.createProjectForm.value.profile = this.selectedUsers;
+        } else {
+            let index: number = -1;
+            index = this.createProjectForm.value.profile.indexOf(item.id);
+            if (index > -1) {
+                this.createProjectForm.value.profile.splice(index);
+            }
+        }
+    }
+
+    getUsersList() {
+        this._httpService.get('/usersList')
+            .subscribe(
+                (result: { data: any, msg: string, status: number }) => {
+                    if (result.data) {
+                        this.usersListData = result.data;
+                    } else {
+                        this.usersListData = [];
+                    }
+                })
     }
 
     createFormControls() {
-        this.projectSchool = new FormControl('', [
+        this.project = new FormControl('', [
             Validators.required
         ]);
         this.description = new FormControl('', [
@@ -35,42 +78,38 @@ export class CreateProjectFormComponent implements OnInit {
         ]);
         this.symbol = new FormControl('', [
             Validators.required,
-            Validators.pattern("[^ @]*@[^ @]*")
+            // Validators.pattern("[^ @]*@[^ @]*")
         ]);
-        this.password = new FormControl('', [
-            Validators.required,
-            Validators.minLength(5)
+        this.profile = new FormControl('');
+        this.formsubmitted = new FormControl('', [
+            // Validators.required,
+            // Validators.minLength(5)
         ]);
-        this.cpassword = new FormControl('', [
-            Validators.required,
-            Validators.minLength(5)
-        ]);
-        this.username = new FormControl('', [
-            Validators.required
-        ]);
-        this.mobile = new FormControl('');
+        // this.username = new FormControl('', [
+        //     Validators.required
+        // ]);
     }
 
     createForm() {
         this.createProjectForm = new FormGroup({
-            projectSchool: this.projectSchool,
+            project: this.project,
             description: this.description,
             symbol: this.symbol,
-            password: this.password,
-            cpassword: this.cpassword,
-            username: this.username,
-            mobile: this.mobile
+            profile: this.profile,
+            formsubmitted: this.formsubmitted,
+            // username: this.username,
+            // mobile: this.mobile,
+            // profile: new FormControl(this.profile, Validators.required)
         });
     }
 
     onSubmit() {
         console.log('you submitted value: ', this.createProjectForm.value);
         const formData = this.createProjectForm["controls"];
-        formData['projectSchool'].markAsTouched();
-        formData['description'].markAsTouched();
-        formData['username'].markAsTouched();
-        formData['symbol'].markAsTouched();
-        formData['password'].markAsTouched();
-        formData['cpassword'].markAsTouched();
+        // formData['project'].markAsTouched();
+        // formData['description'].markAsTouched();
+        // formData['symbol'].markAsTouched();
+        // formData['profile'].markAsTouched();
+        // formData['formsubmitted'].markAsTouched();
     }
 }

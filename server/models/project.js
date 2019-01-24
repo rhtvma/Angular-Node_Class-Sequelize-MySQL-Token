@@ -4,8 +4,9 @@ module.exports = function (sequelize, DataTypes) {
     return sequelize.define('project', {
         id: {
             type: DataTypes.INTEGER(11),
-            allowNull: false,
-            primaryKey: true
+            allowNull: true,
+            primaryKey: true,
+            autoIncrement: true
         },
         project: {
             type: DataTypes.STRING(255),

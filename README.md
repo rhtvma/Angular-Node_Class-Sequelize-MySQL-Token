@@ -1,9 +1,30 @@
+# Steps for running project
+
+ 1: $ cd public
+    $ npm install
+ 
+ 2: $ cd server
+    $ npm install
+    $ node main.js
+    $ Server running port : 8080
+    
+ 3: http://localhost:8080/
+   
+   
+
+
+
+
+
+
+
 # Server (Back-End)
 
 This /server folder contains Node.Js(Server) code 
 
 # Database
 
+database Name : kkk
 import database from /database folder
 
 
@@ -11,7 +32,9 @@ import database from /database folder
  
    Note: make sure #node and #git is installed on your system.
      
-   * Step 1 : goto /databse folder and import rhtvma.sql in your machine
+   * Step 1 : goto /databse folder and import kkk.sql in your system.
+   
+   * I have use sequelize ORM, So please install 
    
    
    * Step 2 : goto /server 
@@ -23,16 +46,6 @@ import database from /database folder
               Server running at http://localhost:8070/
               
               goto **/server/config/default.json**
-              
-              Update your databse configurationshere
-               "mysql": {
-                  "connectionLimit": 5,
-                  "host": "127.0.0.1",
-                  "port": 3306,
-                  "user": "root",
-                  "password": "root",
-                  "database": "{db_name}"
-                },
 
    * Step 3 : goto /public 
    
@@ -45,7 +58,7 @@ import database from /database folder
               
               run **ng build**  for production mode use this
                             
-              then just hit **http://localhost:8070/** (this will work only after **Step 2**)
+              then just hit **http://localhost:8080/** (this will work only after **Step 2**)
               
 
  

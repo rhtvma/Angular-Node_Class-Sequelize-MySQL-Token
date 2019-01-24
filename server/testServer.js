@@ -22,6 +22,8 @@ class TestServer {
         conf = configuration[process.env.NODE_ENV || 'development'];
 
         this.testServer = express();
+        /*Load public*/
+        this.testServer.use(express.static(__dirname + '/../public/dist'));
 
         /*Logger*/
         this._initiateLogging();

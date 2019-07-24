@@ -5,10 +5,10 @@ const logg = new Services.LoggerService('Signup', true).logger,
 const Project = require('../../models').project;
 const Users = require('../../models').users;
 const UserProjectMapping = require('../../models').userprojectmapping;
-var _ = require('lodash');
+
+const _ = require('lodash');
 class ProjectController {
     constructor() {
-        this.dbService = new Services.DBService();
     }
 
     projectCreate(req, res, next) {

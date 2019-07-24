@@ -5,7 +5,6 @@ const uuidv4 = require('uuid/v4'),
 class UtilityService {
     constructor() {
     }
-
 }
 
 module.exports = UtilityService;

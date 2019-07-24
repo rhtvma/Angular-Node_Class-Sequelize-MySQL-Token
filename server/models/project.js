@@ -20,15 +20,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER(11),
             allowNull: true
         },
-        lastupdated: {
-            type: DataTypes.DATE,
-            allowNull: true
-        },
-        createdon: {
-            type: DataTypes.DATE,
-            allowNull: true,
-            defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
-        },
         description: {
             type: DataTypes.TEXT,
             allowNull: true
@@ -37,13 +28,16 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER(11),
             allowNull: true
         },
-        profile: {
-            type: DataTypes.INTEGER(11),
-            allowNull: true,
-            references: {
-                model: 'users',
-                key: 'id'
-            }
+        created_by: DataTypes.INTEGER,
+        createdAt: {
+            allowNull: false,
+            defaultValue: new Date(),
+            type: DataTypes.DATE
+        },
+        updatedAt: {
+            allowNull: false,
+            defaultValue: new Date(),
+            type: DataTypes.DATE
         }
     }, {
         tableName: 'project'

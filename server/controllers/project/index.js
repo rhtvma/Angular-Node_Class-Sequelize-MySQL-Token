@@ -1,35 +1,24 @@
 const express = require('express'),
     ProjectController = require('./project.controller');
 
-let conf = require('../../config.json'),
-    credentials = require('../../credentials_non_commit.json');
+const config = require('config');
+
 
 class ProjectRouter {
     constructor() {
-        for (let key in credentials) {
-            if (!(conf[key] instanceof Object))
-                conf[key] = {};
-            conf[key] = JSON.parse(JSON.stringify(credentials[key]));
-        }
-        this.config = conf;
+        this.routes = config.get('routes');
         this._projectController = new ProjectController();
 
         this.router = express.Router();
 
-
-        this.router.route(this.config.routes.project.projectList)
+        this.router.route(this.routes.project.projectList)
             .get(this._projectController.projectList.bind(this._projectController));
 
-        this.router.route(this.config.routes.project.projectCreate)
+        this.router.route(this.routes.project.projectCreate)
             .post(this._projectController.projectCreate.bind(this._projectController));
 
-        this.router.route(this.config.routes.users.usersList)
+        this.router.route(this.routes.users.usersList)
             .get(this._projectController.usersList.bind(this._projectController));
-
-        // this.router.route(this.config.routes.user.getUser)
-        //     .get(this._projectController.validatePotentialMatchesStatus.bind(this._projectController),
-        //         this._projectController.potentialMatchesStatus.bind(this._projectController));
-        //
 
     }
 

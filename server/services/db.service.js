@@ -1,8 +1,8 @@
-let config = require('../config.json')[process.env.NODE_ENV || 'development'];
-let credentials = require('../credentials_non_commit');
-const mysqlConfig = config['mysql'];
 const mysql = require('mysql');
 const logger = new (require('./logger.service'))().logger;
+
+const config = require('config'),
+    mysqlConfig = config.get('mysql');
 
 class DBService {
     constructor() {

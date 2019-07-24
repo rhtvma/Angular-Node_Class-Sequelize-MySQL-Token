@@ -8,19 +8,12 @@ const express = require('express'),
     AppRouter = require('./routes');
 
 
-let configuration = require('./config.json'),
-    credentials = require('./credentials_non_commit'),
-    conf;
+const config = require('config');
 
 class TestServer {
     constructor() {
-        for (let key in credentials) {
-            if (!(configuration[key] instanceof Object))
-                configuration[key] = {};
-            configuration[key] = JSON.parse(JSON.stringify(credentials[key]));
-        }
-        conf = configuration[process.env.NODE_ENV || 'development'];
-
+        this.conf = config.get('configuration');
+        this.mysqlconf = config.get('mysql');
         this.testServer = express();
         /*Load public*/
         this.testServer.use(express.static(__dirname + '/../public/dist'));
@@ -39,7 +32,7 @@ class TestServer {
         /**Routes*/
         /* Common of All routes. */
         this.testServer.use('*', (req, res, next) => {
-            res.setHeader(conf.httpHeaders.names.contentType, conf.httpHeaders.values.appJson);
+            res.setHeader(this.conf.httpHeaders.names.contentType, this.conf.httpHeaders.values.appJson);
             next();
         });
 
@@ -73,12 +66,12 @@ class TestServer {
         /**
          * Session middleware
          */
-        const sessionStore = new mySqlSessionStore(conf.mysql);
+        const sessionStore = new mySqlSessionStore(this.conf.mysqlconf);
 
         this.testServer.set('trust proxy', 1);
         this.testServer.use(session({
             // key: '',
-            secret: conf.session.secret,
+            secret: this.conf.session.secret,
             store: sessionStore,
             resave: false,
             saveUninitialized: false,
@@ -95,7 +88,7 @@ class TestServer {
          * Setting middleware
          */
         this.testServer.locals.base = __dirname;
-        this.testServer.locals.conf = configuration;
+        this.testServer.locals.conf = this.conf;
         this.testServer.use(methodOverride())                                  // Express Middleware
             .use(bodyParser.json())                                       // Express BodyParser
             .use(bodyParser.urlencoded({extended: true}))

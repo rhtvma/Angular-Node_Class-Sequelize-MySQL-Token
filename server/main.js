@@ -1,22 +1,27 @@
 const express = require('express'),
-    conf = require('./config.json')[process.env.NODE_ENV || 'development'],
-    credentials = require('./credentials_non_commit.json'),
     http = require('http'),
     server = express(),
     testServer = new (require('./testServer'))(),
-    logger = testServer.app.get('logg');
+    logger = testServer.app.get('logg'),
+    config = require('config');
 
 server.use('/', testServer.app);
+
+const host = config.get('configuration.host'),
+    port = config.get('configuration.port');
 
 const listenerCallback = (err) => {
     if (!!err) {
         console.error(err.message || err.stack || err);
     }
-    logger.info(`Server is listening on port ${conf.port}, in ${process.env.NODE_ENV} mode`);
+    console.log(`--------------------**********************--------------------`);
+    console.log(`Server is listening on port ${port}, in ${process.env.NODE_ENV} mode`);
+    console.log(`${host}:${port}/`);
+    console.log(`--------------------**********************--------------------`);
 };
 
 /*HTTP*/
-let _testInstance = http.createServer(testServer.app).listen(conf.port, listenerCallback);
+let _testInstance = http.createServer(testServer.app).listen(port, listenerCallback);
 
 /*Exception Handler*/
 process.on('uncaughtException', (err) => {
